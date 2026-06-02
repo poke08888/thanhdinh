@@ -34,6 +34,18 @@ Theme thương mại điện tử cho thương hiệu chăm sóc nam giới **Li
    - Đặt **trang chủ tĩnh** và xả rewrite rules.
 4. Nếu permalink chưa nhận, vào **Cài đặt → Đường dẫn tĩnh → Lưu** một lần.
 
+## Sửa chi tiết mùi hương (WP admin)
+
+Vào **Sản phẩm LB → Mùi hương** (hoặc bấm "Sửa" một mùi). Mỗi mùi có các trường:
+
+- **Ảnh đại diện** — chọn từ Thư viện Media (có nút Chọn ảnh / Xóa ảnh, xem trước). Ảnh upload sẽ thay ảnh mặc định bundled trong theme; để trống thì dùng lại ảnh theme.
+- **Tông hương** — nhãn ngắn (VD: *Biển khơi*).
+- **Màu đại diện** — mã hex cho chấm/viền mùi trên giao diện (kèm bảng chọn màu).
+- **Mô tả mùi hương** — đoạn mô tả hiển thị ở trang mùi & chi tiết sản phẩm.
+- **Các hương chính** — tầng hương, ngăn cách bằng dấu phẩy.
+
+Danh sách mùi hương cũng có cột **Ảnh** xem nhanh. Thay đổi áp dụng ngay cho trang chủ, trang mùi, chi tiết sản phẩm và giỏ hàng.
+
 ## Tích hợp WooCommerce (theo dõi đơn hàng)
 
 Theme tích hợp WooCommerce như **phụ thuộc mềm** để quản lý đơn hàng:

@@ -54,7 +54,7 @@ foreach ( lb_get_scents() as $osid => $os ) {
 					</div>
 				</div>
 				<div class="scent-hero__label">
-					<img src="<?php echo esc_url( lb_asset( $s['img'] ) ); ?>" alt="<?php echo esc_attr( $s['name'] ); ?>" />
+					<img src="<?php echo esc_url( $s['img_url'] ); ?>" alt="<?php echo esc_attr( $s['name'] ); ?>" />
 				</div>
 			</div>
 		</div>

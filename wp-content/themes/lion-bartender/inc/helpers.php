@@ -29,6 +29,30 @@ function lb_price( $n ) {
  * ------------------------------------------------------------------ */
 
 /**
+ * Giải ảnh đại diện của một mùi hương.
+ * Ưu tiên ảnh upload từ Media (term meta lb_img_id), rồi tới URL/tên file lb_img
+ * (tên file = ảnh bundled trong theme).
+ *
+ * @param int    $term_id ID term (0 nếu chưa có).
+ * @param string $img     Giá trị lb_img (tên file hoặc URL).
+ */
+function lb_scent_img_url( $term_id, $img ) {
+	if ( $term_id ) {
+		$att_id = (int) get_term_meta( $term_id, 'lb_img_id', true );
+		if ( $att_id ) {
+			$u = wp_get_attachment_image_url( $att_id, 'full' );
+			if ( $u ) {
+				return $u;
+			}
+		}
+	}
+	if ( $img ) {
+		return preg_match( '#^https?://#', $img ) ? $img : lb_asset( $img );
+	}
+	return '';
+}
+
+/**
  * Lấy dữ liệu một mùi hương theo slug. Ưu tiên từ DB (term meta),
  * fallback về dữ liệu seed nếu chưa seed.
  */
@@ -41,6 +65,7 @@ function lb_get_scent( $slug ) {
 	$term = get_term_by( 'slug', $slug, 'lb_scent' );
 	if ( $term && ! is_wp_error( $term ) ) {
 		$notes = get_term_meta( $term->term_id, 'lb_notes', true );
+		$img   = get_term_meta( $term->term_id, 'lb_img', true );
 		$data  = array(
 			'slug'    => $slug,
 			'term_id' => $term->term_id,
@@ -51,7 +76,8 @@ function lb_get_scent( $slug ) {
 			'ink'     => get_term_meta( $term->term_id, 'lb_ink', true ),
 			'notes'   => $notes ? explode( '|', $notes ) : array(),
 			'desc'    => get_term_meta( $term->term_id, 'lb_desc', true ),
-			'img'     => get_term_meta( $term->term_id, 'lb_img', true ),
+			'img'     => $img,
+			'img_url' => lb_scent_img_url( $term->term_id, $img ),
 			'link'    => get_term_link( $term ),
 		);
 		$cache[ $slug ] = $data;
@@ -62,8 +88,9 @@ function lb_get_scent( $slug ) {
 	$seed = lb_seed_scents();
 	if ( isset( $seed[ $slug ] ) ) {
 		$s = $seed[ $slug ];
-		$s['slug'] = $slug;
-		$s['link'] = home_url( '/mui-huong/' . $slug . '/' );
+		$s['slug']    = $slug;
+		$s['img_url'] = lb_asset( $s['img'] );
+		$s['link']    = home_url( '/mui-huong/' . $slug . '/' );
 		$cache[ $slug ] = $s;
 		return $s;
 	}
@@ -175,8 +202,8 @@ function lb_product_image( $product, $scent ) {
 		return lb_asset( 'bottle-ocean-club.png' );
 	}
 	$s = lb_get_scent( $scent );
-	if ( $s && ! empty( $s['img'] ) ) {
-		return lb_asset( $s['img'] );
+	if ( $s && ! empty( $s['img_url'] ) ) {
+		return $s['img_url'];
 	}
 	return lb_asset( $product['heroImg'] );
 }

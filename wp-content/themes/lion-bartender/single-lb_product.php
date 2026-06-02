@@ -67,7 +67,7 @@ $related = array_slice( $related, 0, 3 );
 						<?php foreach ( $lb_product['scents'] as $sid ) :
 							$ss = lb_get_scent( $sid ); ?>
 							<button class="thumb lb-thumb <?php echo $sid === $scent ? 'is-active' : ''; ?>" data-scent="<?php echo esc_attr( $sid ); ?>">
-								<img src="<?php echo esc_url( lb_asset( $ss['img'] ) ); ?>" alt="<?php echo esc_attr( $ss['name'] ); ?>" />
+								<img src="<?php echo esc_url( $ss['img_url'] ); ?>" alt="<?php echo esc_attr( $ss['name'] ); ?>" />
 							</button>
 						<?php endforeach; ?>
 					</div>

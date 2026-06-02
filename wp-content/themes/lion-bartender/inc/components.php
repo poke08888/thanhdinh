@@ -18,7 +18,7 @@ function lb_scent_card( $s ) {
 	<a class="scent-card" href="<?php echo esc_url( $s['link'] ); ?>">
 		<div class="scent-card__glow" style="background:radial-gradient(circle, <?php echo esc_attr( $s['color'] ); ?>, transparent 65%)"></div>
 		<div class="scent-card__label">
-			<img src="<?php echo esc_url( lb_asset( $s['img'] ) ); ?>" alt="<?php echo esc_attr( $s['name'] ); ?>" />
+			<img src="<?php echo esc_url( $s['img_url'] ); ?>" alt="<?php echo esc_attr( $s['name'] ); ?>" />
 		</div>
 		<div class="scent-card__row">
 			<span class="scent-card__name"><?php echo esc_html( $s['name'] ); ?></span>
