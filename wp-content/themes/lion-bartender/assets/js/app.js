@@ -9,6 +9,15 @@
   var D = window.LB_DATA || { products: {}, scents: {} };
   var CART_KEY = 'lb_cart';
 
+  // wp_localize_script ép mọi giá trị thành chuỗi → ép lại về số để tránh nối chuỗi.
+  D.freeShipMin = Number(D.freeShipMin) || 299000;
+  D.shipFee = Number(D.shipFee) || 25000;
+  Object.keys(D.products || {}).forEach(function (k) {
+    var p = D.products[k];
+    p.price = Number(p.price) || 0;
+    p.oldPrice = Number(p.oldPrice) || 0;
+  });
+
   /* ---------- helpers ---------- */
   function $(sel, root) { return (root || document).querySelector(sel); }
   function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }

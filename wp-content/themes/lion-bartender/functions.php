@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LB_VERSION', '1.0.0' );
+define( 'LB_VERSION', '1.0.1' );
 
 require get_template_directory() . '/inc/data.php';
 require get_template_directory() . '/inc/helpers.php';
