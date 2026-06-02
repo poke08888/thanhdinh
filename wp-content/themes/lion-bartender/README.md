@@ -34,6 +34,18 @@ Theme thương mại điện tử cho thương hiệu chăm sóc nam giới **Li
    - Đặt **trang chủ tĩnh** và xả rewrite rules.
 4. Nếu permalink chưa nhận, vào **Cài đặt → Đường dẫn tĩnh → Lưu** một lần.
 
+## Sửa text trang chủ & các trang con (Tùy biến)
+
+Vào **Giao diện → Tùy biến → “Lion Bartender — Nội dung”**. Mọi đoạn chữ cố định được gom theo nhóm, chỉnh trực tiếp và **xem trước ngay**:
+
+- **Chung & Thanh thông báo** — dòng thông báo đầu trang.
+- **Trang chủ — Hero / Dải tin cậy / Bộ sưu tập mùi / Mục 3-in-1 / Quầy hàng / Teaser câu chuyện.**
+- **Trang Cửa hàng** — eyebrow, tiêu đề, mô tả.
+- **Trang Câu chuyện** — trích dẫn, khởi nguồn, 3 trụ cột, 4 bước, CTA.
+- **Footer** — mô tả thương hiệu, mục đăng ký, bản quyền, điều khoản.
+
+Một số trường cho phép **HTML cơ bản** (`<br>`, `<span class="gold-text">…`) để giữ hiệu ứng chữ vàng/xuống dòng. Để trống sẽ tự dùng nội dung mặc định. *(Nội dung sản phẩm & mùi hương sửa ở trang quản trị tương ứng, không nằm trong Tùy biến.)*
+
 ## Sửa chi tiết mùi hương (WP admin)
 
 Vào **Sản phẩm LB → Mùi hương** (hoặc bấm "Sửa" một mùi). Mỗi mùi có các trường:

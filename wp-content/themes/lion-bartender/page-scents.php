@@ -22,10 +22,10 @@ $scents = lb_get_scents();
 		<div class="wrap">
 			<div class="reveal" style="text-align:center;margin-bottom:48px">
 				<?php echo lb_rule( 'max-width:280px;margin:0 auto 18px' ); // phpcs:ignore ?>
-				<div class="eyebrow" style="margin-bottom:14px">Bộ sưu tập mùi hương</div>
-				<h2 class="h-lg">Sáu Ly · Sáu Mùi</h2>
+				<div class="eyebrow" style="margin-bottom:14px"><?php lb_the_text( 'scents_eyebrow' ); ?></div>
+				<h2 class="h-lg"><?php lb_the_text( 'scents_heading' ); ?></h2>
 				<p class="lead muted" style="max-width:52ch;margin:16px auto 0">
-					Mỗi mùi là một quầy bar riêng. Chọn ly của bạn — và để hương dẫn lối cả ngày dài.
+					<?php lb_the_html( 'scents_sub' ); ?>
 				</p>
 			</div>
 			<div class="scents reveal">

@@ -39,7 +39,7 @@ $lb_logo = lb_asset( 'logo-wordmark.png' );
 <?php wp_body_open(); ?>
 <div class="app" data-bg="midnight" data-accent="gold" data-orn="on">
 
-	<div class="announce"><?php lb_the_icon( 'bolt' ); ?> Freeship đơn từ 299k · Tặng cọ tắm cho mọi đơn 3-in-1 <?php lb_the_icon( 'bolt' ); ?></div>
+	<div class="announce"><?php lb_the_icon( 'bolt' ); ?> <?php lb_the_text( 'announce_text' ); ?> <?php lb_the_icon( 'bolt' ); ?></div>
 
 	<header class="nav" id="lb-nav">
 		<div class="wrap">

@@ -17,9 +17,9 @@ $logo     = lb_asset( 'logo-wordmark.png' );
 $three = lb_get_product_by_slug( 'shower-3in1' );
 
 $trust = array(
-	array( 'truck', 'Freeship từ 299k', 'Toàn quốc' ),
-	array( 'drop', 'Lưu hương lâu', 'Tinh dầu nước hoa' ),
-	array( 'shield', 'Chính hãng 100%', 'Đổi trả trong 7 ngày' ),
+	array( 'truck', lb_text( 'trust1_t' ), lb_text( 'trust1_s' ) ),
+	array( 'drop', lb_text( 'trust2_t' ), lb_text( 'trust2_s' ) ),
+	array( 'shield', lb_text( 'trust3_t' ), lb_text( 'trust3_s' ) ),
 );
 ?>
 
@@ -30,14 +30,14 @@ $trust = array(
 		<div class="hero__bg"></div>
 		<div class="wrap">
 			<div class="hero__center">
-				<div class="eyebrow filigree" style="margin-bottom:20px">Scent · Served · Since the bar</div>
+				<div class="eyebrow filigree" style="margin-bottom:20px"><?php lb_the_text( 'hero_eyebrow' ); ?></div>
 				<img class="hero__logo hero__logo--big" src="<?php echo esc_url( $logo ); ?>" alt="Lion Bartender" />
 				<p class="lead" style="max-width:40ch;margin:8px auto 30px">
-					Chăm sóc nam giới chuẩn quý ông. <span class="gold-text serif">Mùi hương độc bản, đầy bản lĩnh.</span>
+					<?php lb_the_html( 'hero_sub' ); ?>
 				</p>
 				<div class="hero__cta" style="justify-content:center">
-					<a class="btn btn--gold btn--lg" href="<?php echo esc_url( lb_shop_url() ); ?>">Mua ngay <?php lb_the_icon( 'arrow' ); ?></a>
-					<a class="btn btn--ghost btn--lg" href="<?php echo esc_url( lb_scents_url() ); ?>">Khám phá mùi hương</a>
+					<a class="btn btn--gold btn--lg" href="<?php echo esc_url( lb_shop_url() ); ?>"><?php lb_the_text( 'hero_cta1' ); ?> <?php lb_the_icon( 'arrow' ); ?></a>
+					<a class="btn btn--ghost btn--lg" href="<?php echo esc_url( lb_scents_url() ); ?>"><?php lb_the_text( 'hero_cta2' ); ?></a>
 				</div>
 				<div class="hero__chips filigree">
 					<?php foreach ( $scents as $slug => $s ) : ?>
@@ -73,10 +73,10 @@ $trust = array(
 		<div class="wrap">
 			<div class="reveal" style="text-align:center;margin-bottom:48px">
 				<?php echo lb_rule( 'max-width:280px;margin:0 auto 18px' ); // phpcs:ignore ?>
-				<div class="eyebrow" style="margin-bottom:14px">Bộ sưu tập mùi hương</div>
-				<h2 class="h-lg">Sáu Ly · Sáu Mùi</h2>
+				<div class="eyebrow" style="margin-bottom:14px"><?php lb_the_text( 'scents_eyebrow' ); ?></div>
+				<h2 class="h-lg"><?php lb_the_text( 'scents_heading' ); ?></h2>
 				<p class="lead muted" style="max-width:52ch;margin:16px auto 0">
-					Mỗi mùi là một quầy bar riêng. Chọn ly của bạn — và để hương dẫn lối cả ngày dài.
+					<?php lb_the_html( 'scents_sub' ); ?>
 				</p>
 			</div>
 			<div class="scents reveal">
@@ -98,8 +98,8 @@ $trust = array(
 						<img src="<?php echo esc_url( lb_asset( 'bottle-ocean-club.png' ) ); ?>" alt="3-in-1" style="position:relative;z-index:2;max-height:520px" />
 					</div>
 					<div class="feature__body">
-						<div class="eyebrow">Best Seller · 3 trong 1</div>
-						<h2 class="h-md" style="margin:12px 0 8px">Tắm · Gội · Rửa mặt<br /><span class="gold-text">Trong một chai</span></h2>
+						<div class="eyebrow"><?php lb_the_text( 'feat_eyebrow' ); ?></div>
+						<h2 class="h-md" style="margin:12px 0 8px"><?php lb_the_html( 'feat_heading' ); ?></h2>
 						<p class="muted" style="max-width:46ch"><?php echo esc_html( $three['blurb'] ); ?></p>
 						<ul class="feature__list">
 							<?php foreach ( $three['features'] as $f ) : ?>
@@ -108,7 +108,7 @@ $trust = array(
 						</ul>
 						<div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
 							<a class="btn btn--gold" href="<?php echo esc_url( $three['link'] ); ?>">Mua <?php echo esc_html( lb_price( $three['price'] ) ); ?> <?php lb_the_icon( 'arrow' ); ?></a>
-							<span class="muted" style="font-size:13px">Tặng kèm cọ tắm massage</span>
+							<span class="muted" style="font-size:13px"><?php lb_the_text( 'feat_note' ); ?></span>
 						</div>
 					</div>
 				</div>
@@ -122,10 +122,10 @@ $trust = array(
 		<div class="wrap">
 			<div class="reveal" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:38px;gap:20px;flex-wrap:wrap">
 				<div>
-					<div class="eyebrow" style="margin-bottom:12px">Được chọn nhiều nhất</div>
-					<h2 class="h-lg">Quầy Hàng</h2>
+					<div class="eyebrow" style="margin-bottom:12px"><?php lb_the_text( 'best_eyebrow' ); ?></div>
+					<h2 class="h-lg"><?php lb_the_text( 'best_heading' ); ?></h2>
 				</div>
-				<a class="tlink" href="<?php echo esc_url( lb_shop_url() ); ?>">Xem tất cả <?php lb_the_icon( 'arrow' ); ?></a>
+				<a class="tlink" href="<?php echo esc_url( lb_shop_url() ); ?>"><?php lb_the_text( 'best_link' ); ?> <?php lb_the_icon( 'arrow' ); ?></a>
 			</div>
 			<div class="pgrid reveal">
 				<?php foreach ( $products as $p ) {
@@ -140,15 +140,15 @@ $trust = array(
 		<div class="wrap">
 			<div class="story-grid reveal">
 				<div>
-					<div class="eyebrow" style="margin-bottom:14px">Câu chuyện thương hiệu</div>
-					<h2 class="h-md" style="margin-bottom:18px">Pha hương như<br /><span class="gold-text">một bartender thực thụ</span></h2>
+					<div class="eyebrow" style="margin-bottom:14px"><?php lb_the_text( 'steaser_eyebrow' ); ?></div>
+					<h2 class="h-md" style="margin-bottom:18px"><?php lb_the_html( 'steaser_heading' ); ?></h2>
 					<p class="muted" style="margin-bottom:14px;max-width:46ch">
-						Lion Bartender ra đời từ một ý tưởng đơn giản: mùi hương của một quý ông nên được pha chế cẩn thận như một ly cocktail thượng hạng — có lớp lang, có cá tính, có cao trào.
+						<?php lb_the_html( 'steaser_p1' ); ?>
 					</p>
 					<p class="muted" style="margin-bottom:26px;max-width:46ch">
-						Mỗi sản phẩm là một công thức riêng, đóng trong thiết kế tem nhãn cổ điển lấy cảm hứng từ những quầy bar và tiệm cắt tóc xưa.
+						<?php lb_the_html( 'steaser_p2' ); ?>
 					</p>
-					<a class="btn btn--ghost" href="<?php echo esc_url( lb_page_url( 'cau-chuyen' ) ); ?>">Đọc câu chuyện <?php lb_the_icon( 'arrow' ); ?></a>
+					<a class="btn btn--ghost" href="<?php echo esc_url( lb_page_url( 'cau-chuyen' ) ); ?>"><?php lb_the_text( 'steaser_btn' ); ?> <?php lb_the_icon( 'arrow' ); ?></a>
 				</div>
 				<div class="story-img" style="position:relative">
 					<img src="<?php echo esc_url( lb_asset( 'promo-trio-full.png' ) ); ?>" alt="Lion Bartender" />

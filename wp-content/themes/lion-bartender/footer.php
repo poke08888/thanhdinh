@@ -15,7 +15,7 @@ $lb_logo = lb_asset( 'logo-wordmark.png' );
 				<div>
 					<img class="foot__logo" src="<?php echo esc_url( $lb_logo ); ?>" alt="Lion Bartender" />
 					<p class="muted" style="max-width:34ch;font-size:14px">
-						Chăm sóc nam giới chuẩn quý ông. Mùi hương độc bản — sang trọng, bụi bặm, đầy bản lĩnh.
+						<?php lb_the_html( 'footer_tagline' ); ?>
 					</p>
 					<div class="foot__social" style="margin-top:22px">
 						<a href="#" aria-label="Instagram"><?php lb_the_icon( 'ig' ); ?></a>
@@ -39,8 +39,8 @@ $lb_logo = lb_asset( 'logo-wordmark.png' );
 					<a href="#">Liên hệ</a>
 				</div>
 				<div class="foot__col">
-					<h5>Gia nhập băng sư tử</h5>
-					<p class="muted" style="font-size:14px">Nhận ưu đãi sớm &amp; tin mùi hương mới.</p>
+					<h5><?php lb_the_text( 'footer_news_heading' ); ?></h5>
+					<p class="muted" style="font-size:14px"><?php lb_the_text( 'footer_news_sub' ); ?></p>
 					<form class="foot__news" onsubmit="return false;">
 						<input type="email" placeholder="Email của bạn" />
 						<button class="btn btn--gold btn--sm" type="submit">Đăng ký</button>
@@ -48,8 +48,8 @@ $lb_logo = lb_asset( 'logo-wordmark.png' );
 				</div>
 			</div>
 			<div class="foot__bottom">
-				<span>© <?php echo esc_html( gmdate( 'Y' ) ); ?> Lion Bartender by Nerman. Đã đăng ký bản quyền.</span>
-				<span>Điều khoản · Bảo mật · Đổi trả</span>
+				<span>© <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php lb_the_text( 'footer_copyright' ); ?></span>
+				<span><?php lb_the_text( 'footer_legal' ); ?></span>
 			</div>
 		</div>
 	</footer>
