@@ -12,6 +12,7 @@ define( 'LB_VERSION', '1.0.0' );
 require get_template_directory() . '/inc/data.php';
 require get_template_directory() . '/inc/helpers.php';
 require get_template_directory() . '/inc/components.php';
+require get_template_directory() . '/inc/woocommerce.php';
 
 /* ------------------------------------------------------------------
  * Theme setup
@@ -36,6 +37,9 @@ function lb_setup() {
 			'primary' => 'Menu chính',
 		)
 	);
+
+	// Hỗ trợ WooCommerce (dùng để theo dõi đơn hàng; giao diện vẫn là theme custom).
+	add_theme_support( 'woocommerce' );
 }
 
 /* ------------------------------------------------------------------
@@ -143,11 +147,13 @@ function lb_place_order() {
 		$subtotal  += $line_total;
 		$scent_data = lb_get_scent( $scent );
 		$lines[]    = array(
-			'name'  => $product['name'],
-			'scent' => $scent_data ? $scent_data['name'] : $scent,
-			'qty'   => $qty,
-			'price' => $product['price'],
-			'total' => $line_total,
+			'slug'       => $slug,
+			'name'       => $product['name'],
+			'scent_slug' => $scent,
+			'scent'      => $scent_data ? $scent_data['name'] : $scent,
+			'qty'        => $qty,
+			'price'      => $product['price'],
+			'total'      => $line_total,
 		);
 	}
 
@@ -155,9 +161,30 @@ function lb_place_order() {
 		wp_send_json_error( array( 'message' => 'Giỏ hàng trống.' ) );
 	}
 
-	$ship  = ( $subtotal >= 299000 ) ? 0 : 25000;
-	$total = $subtotal + $ship;
+	$ship     = ( $subtotal >= 299000 ) ? 0 : 25000;
+	$total    = $subtotal + $ship;
+	$customer = compact( 'name', 'phone', 'email', 'address', 'ward', 'city', 'note' );
 
+	/*
+	 * Nếu có WooCommerce: tạo đơn hàng WooCommerce thật để theo dõi trong
+	 * WooCommerce → Đơn hàng (trạng thái, email, báo cáo). Nếu không, dùng
+	 * CPT lb_order nội bộ làm fallback.
+	 */
+	if ( lb_wc_active() ) {
+		$result = lb_create_wc_order( $lines, $customer, $pay, $ship );
+		if ( is_wp_error( $result ) ) {
+			wp_send_json_error( array( 'message' => $result->get_error_message() ) );
+		}
+		wp_send_json_success(
+			array(
+				'order_id' => $result,
+				'total'    => $total,
+				'redirect' => add_query_arg( 'order', $result, lb_page_url( 'dat-hang' ) ),
+			)
+		);
+	}
+
+	// Fallback: CPT lb_order.
 	$order_id = wp_insert_post(
 		array(
 			'post_type'   => 'lb_order',
@@ -170,7 +197,7 @@ function lb_place_order() {
 		wp_send_json_error( array( 'message' => 'Không tạo được đơn hàng.' ) );
 	}
 
-	update_post_meta( $order_id, 'lb_customer', compact( 'name', 'phone', 'email', 'address', 'ward', 'city', 'note' ) );
+	update_post_meta( $order_id, 'lb_customer', $customer );
 	update_post_meta( $order_id, 'lb_items', $lines );
 	update_post_meta( $order_id, 'lb_subtotal', $subtotal );
 	update_post_meta( $order_id, 'lb_ship', $ship );
@@ -180,9 +207,9 @@ function lb_place_order() {
 
 	wp_send_json_success(
 		array(
-			'order_id'    => $order_id,
-			'total'       => $total,
-			'redirect'    => lb_page_url( 'dat-hang' ),
+			'order_id' => $order_id,
+			'total'    => $total,
+			'redirect' => add_query_arg( 'order', $order_id, lb_page_url( 'dat-hang' ) ),
 		)
 	);
 }

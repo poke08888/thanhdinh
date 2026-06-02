@@ -34,7 +34,19 @@ Theme thương mại điện tử cho thương hiệu chăm sóc nam giới **Li
    - Đặt **trang chủ tĩnh** và xả rewrite rules.
 4. Nếu permalink chưa nhận, vào **Cài đặt → Đường dẫn tĩnh → Lưu** một lần.
 
+## Tích hợp WooCommerce (theo dõi đơn hàng)
+
+Theme tích hợp WooCommerce như **phụ thuộc mềm** để quản lý đơn hàng:
+
+- Giao diện & trang thanh toán **vẫn là theme custom** (đúng thiết kế) — không dùng cart/checkout mặc định của WooCommerce.
+- Khi khách đặt hàng, hệ thống tạo một **đơn hàng WooCommerce thật** → theo dõi trong **WooCommerce → Đơn hàng** với đầy đủ: trạng thái (COD → *Đang xử lý*; chuyển khoản/ví → *Tạm giữ*), email tự động, báo cáo doanh thu, in đơn…
+- Mỗi sản phẩm `lb_product` được đồng bộ thành một sản phẩm WooCommerce **ẩn** (SKU `LB-…`, không hiện trong catalog WC để khỏi trùng cửa hàng custom) làm dòng hàng trong đơn. **Mùi hương** được lưu làm meta của từng dòng hàng.
+- Giá tự đồng bộ sang WooCommerce khi lưu sản phẩm trong admin.
+- **Nếu chưa cài WooCommerce:** theme tự chạy fallback — lưu đơn vào CPT `lb_order` (admin → Đơn hàng) và hiện thông báo gợi ý cài WooCommerce.
+
+Để bật: chỉ cần **cài & kích hoạt plugin WooCommerce**. Lần đầu vào admin, theme tự đồng bộ catalog sang WooCommerce.
+
 ## Ghi chú
 
-- Giỏ hàng & thanh toán dùng luồng nhẹ tự xây (phù hợp checkout COD kiểu Việt Nam của thiết kế). Có thể tích hợp WooCommerce sau nếu cần cổng thanh toán/online.
+- Checkout là luồng nhẹ tự xây phù hợp COD kiểu Việt Nam của thiết kế; WooCommerce lo phần hậu trường đơn hàng. Cần cổng thanh toán online (VNPay, Stripe…) thì cài plugin cổng tương ứng và đổi `set_status`/`payment_method` trong `inc/woocommerce.php`.
 - Ảnh sản phẩm theo mùi: ưu tiên ảnh chai thật (Ocean Club 3-in-1); còn lại dùng tem nhãn từng mùi (đúng màu mùi).
