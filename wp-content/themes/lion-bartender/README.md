@@ -46,6 +46,16 @@ Vào **Sản phẩm LB → Mùi hương** (hoặc bấm "Sửa" một mùi). M�
 
 Danh sách mùi hương cũng có cột **Ảnh** xem nhanh. Thay đổi áp dụng ngay cho trang chủ, trang mùi, chi tiết sản phẩm và giỏ hàng.
 
+## Sửa ảnh theo mùi (phân loại) của từng sản phẩm
+
+Mở **Sản phẩm LB → (sửa một sản phẩm)** → meta box **“Ảnh theo mùi hương (phân loại)”**. Mỗi mùi mà sản phẩm có sẽ là một ô riêng:
+
+- Bấm **Chọn ảnh** để gán ảnh riêng cho mùi đó (qua Thư viện Media), hoặc **Dùng mặc định** để bỏ override.
+- Để trống → dùng ảnh mặc định (tem nhãn mùi / ảnh chai thật).
+- Lưu ở post meta `lb_scent_images` (`scent_slug => attachment_id`).
+
+Ảnh override được ưu tiên cao nhất ở mọi nơi: thẻ sản phẩm, trang chi tiết (đổi mùi), set builder, giỏ hàng. *(Muốn thêm mùi cho sản phẩm: tích ở ô “Mùi hương” rồi Cập nhật — các ô ảnh tương ứng sẽ hiện ra.)*
+
 ## Tích hợp WooCommerce (theo dõi đơn hàng)
 
 Theme tích hợp WooCommerce như **phụ thuộc mềm** để quản lý đơn hàng:

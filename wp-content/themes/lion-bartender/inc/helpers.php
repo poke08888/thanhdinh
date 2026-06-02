@@ -195,6 +195,16 @@ function lb_get_product_by_slug( $slug ) {
  * Ưu tiên ảnh chai thật khi có; còn lại dùng tem nhãn mùi (đúng màu mùi).
  */
 function lb_product_image( $product, $scent ) {
+	// Ưu tiên ảnh riêng theo từng mùi (phân loại) của chính sản phẩm này.
+	if ( ! empty( $product['ID'] ) ) {
+		$ov = get_post_meta( $product['ID'], 'lb_scent_images', true );
+		if ( is_array( $ov ) && ! empty( $ov[ $scent ] ) ) {
+			$u = wp_get_attachment_image_url( (int) $ov[ $scent ], 'full' );
+			if ( $u ) {
+				return $u;
+			}
+		}
+	}
 	if ( isset( $product['type'] ) && 'gift' === $product['type'] ) {
 		return lb_asset( 'promo-trio.png' );
 	}

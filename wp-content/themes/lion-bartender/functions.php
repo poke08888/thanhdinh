@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LB_VERSION', '1.0.3' );
+define( 'LB_VERSION', '1.0.4' );
 
 require get_template_directory() . '/inc/data.php';
 require get_template_directory() . '/inc/helpers.php';
@@ -15,6 +15,7 @@ require get_template_directory() . '/inc/components.php';
 require get_template_directory() . '/inc/woocommerce.php';
 if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin-scent.php';
+	require get_template_directory() . '/inc/admin-product.php';
 }
 
 /* ------------------------------------------------------------------
