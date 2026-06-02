@@ -98,6 +98,15 @@ function lb_text_fields() {
 		'footer_news_sub'    => array( 'sec' => 'lb_sec_footer', 'type' => 'text', 'label' => 'Đăng ký — mô tả', 'default' => 'Nhận ưu đãi sớm & tin mùi hương mới.' ),
 		'footer_copyright'   => array( 'sec' => 'lb_sec_footer', 'type' => 'text', 'label' => 'Bản quyền (sau © + năm)', 'default' => 'Lion Bartender by Nerman. Đã đăng ký bản quyền.' ),
 		'footer_legal'       => array( 'sec' => 'lb_sec_footer', 'type' => 'text', 'label' => 'Dòng điều khoản', 'default' => 'Điều khoản · Bảo mật · Đổi trả' ),
+
+		/* ---- Footer: Liên hệ & Mạng xã hội ---- */
+		'contact_hotline'    => array( 'sec' => 'lb_sec_contact', 'type' => 'text', 'label' => 'Hotline', 'default' => '' ),
+		'contact_email'      => array( 'sec' => 'lb_sec_contact', 'type' => 'text', 'label' => 'Email liên hệ', 'default' => '' ),
+		'contact_address'    => array( 'sec' => 'lb_sec_contact', 'type' => 'textarea', 'label' => 'Địa chỉ', 'default' => '' ),
+		'social_ig'          => array( 'sec' => 'lb_sec_contact', 'type' => 'url', 'label' => 'Instagram URL', 'default' => '' ),
+		'social_fb'          => array( 'sec' => 'lb_sec_contact', 'type' => 'url', 'label' => 'Facebook URL', 'default' => '' ),
+		'social_tiktok'      => array( 'sec' => 'lb_sec_contact', 'type' => 'url', 'label' => 'TikTok URL', 'default' => '' ),
+		'social_yt'          => array( 'sec' => 'lb_sec_contact', 'type' => 'url', 'label' => 'YouTube URL', 'default' => '' ),
 	);
 }
 
@@ -142,19 +151,32 @@ function lb_customize_register( $wp_customize ) {
 		'lb_sec_shop'    => 'Trang Cửa hàng',
 		'lb_sec_story'   => 'Trang Câu chuyện',
 		'lb_sec_footer'  => 'Footer',
+		'lb_sec_contact' => 'Footer — Liên hệ & Mạng xã hội',
 	);
 	foreach ( $sections as $id => $title ) {
 		$wp_customize->add_section( $id, array( 'title' => $title, 'panel' => 'lb_panel' ) );
 	}
 
 	foreach ( lb_text_fields() as $key => $f ) {
-		$sid       = 'lb_' . $key;
-		$is_area   = 'textarea' === $f['type'];
+		$sid = 'lb_' . $key;
+		switch ( $f['type'] ) {
+			case 'textarea':
+				$sanitize = 'wp_kses_post';
+				$control  = 'textarea';
+				break;
+			case 'url':
+				$sanitize = 'esc_url_raw';
+				$control  = 'url';
+				break;
+			default:
+				$sanitize = 'sanitize_text_field';
+				$control  = 'text';
+		}
 		$wp_customize->add_setting(
 			$sid,
 			array(
 				'default'           => $f['default'],
-				'sanitize_callback' => $is_area ? 'wp_kses_post' : 'sanitize_text_field',
+				'sanitize_callback' => $sanitize,
 				'transport'         => 'refresh',
 			)
 		);
@@ -163,7 +185,7 @@ function lb_customize_register( $wp_customize ) {
 			array(
 				'label'   => $f['label'],
 				'section' => $f['sec'],
-				'type'    => $is_area ? 'textarea' : 'text',
+				'type'    => $control,
 			)
 		);
 	}

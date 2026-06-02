@@ -43,6 +43,7 @@ Vào **Giao diện → Tùy biến → “Lion Bartender — Nội dung”**. M�
 - **Trang Cửa hàng** — eyebrow, tiêu đề, mô tả.
 - **Trang Câu chuyện** — trích dẫn, khởi nguồn, 3 trụ cột, 4 bước, CTA.
 - **Footer** — mô tả thương hiệu, mục đăng ký, bản quyền, điều khoản.
+- **Footer — Liên hệ & Mạng xã hội** — Hotline, Email, Địa chỉ (chỉ hiện khi điền) và link Instagram / Facebook / TikTok / YouTube (để trống thì icon trỏ `#`).
 
 Một số trường cho phép **HTML cơ bản** (`<br>`, `<span class="gold-text">…`) để giữ hiệu ứng chữ vàng/xuống dòng. Để trống sẽ tự dùng nội dung mặc định. *(Nội dung sản phẩm & mùi hương sửa ở trang quản trị tương ứng, không nằm trong Tùy biến.)*
 
