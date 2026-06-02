@@ -18,7 +18,6 @@ $three = lb_get_product_by_slug( 'shower-3in1' );
 
 $trust = array(
 	array( 'truck', 'Freeship từ 299k', 'Toàn quốc' ),
-	array( 'flame', 'Khử mùi 24 giờ', 'Công nghệ Heat-Trigger' ),
 	array( 'drop', 'Lưu hương lâu', 'Tinh dầu nước hoa' ),
 	array( 'shield', 'Chính hãng 100%', 'Đổi trả trong 7 ngày' ),
 );
@@ -55,9 +54,9 @@ $trust = array(
 	<!-- TRUST BAND -->
 	<div style="border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);background:rgba(0,0,0,.25)">
 		<div class="wrap">
-			<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:26px 0" class="lb-trust">
+			<div class="lb-trust">
 				<?php foreach ( $trust as $it ) : ?>
-					<div style="display:flex;align-items:center;gap:14px">
+					<div class="lb-trust__item">
 						<span style="color:var(--gold);flex:none"><?php lb_the_icon( $it[0] ); ?></span>
 						<div>
 							<div style="font-family:var(--font-display);text-transform:uppercase;letter-spacing:.08em;font-size:14px;font-weight:600"><?php echo esc_html( $it[1] ); ?></div>

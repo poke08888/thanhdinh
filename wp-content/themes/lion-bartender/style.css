@@ -214,6 +214,15 @@ h1,h2,h3{font-family:var(--font-display);text-transform:uppercase;font-weight:70
 .hero__halo{position:absolute;z-index:1;width:115%;aspect-ratio:1;border-radius:50%;
   background:radial-gradient(circle, rgba(47,134,196,.28), transparent 62%);filter:blur(8px)}
 
+/* ---------- trust band ---------- */
+.lb-trust{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:56px;padding:26px 0}
+.lb-trust__item{display:flex;align-items:center;gap:14px}
+@media(max-width:900px){.lb-trust{gap:36px}}
+@media(max-width:640px){
+  .lb-trust{flex-direction:column;align-items:center;gap:22px}
+  .lb-trust__item{width:auto;justify-content:center}
+}
+
 /* ---------- scent collection ---------- */
 .scents{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .scent-card{
